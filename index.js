@@ -8,6 +8,7 @@ const user = require("./router/user");
 const like = require("./router/like");
 const comment = require("./router/comment");
 const mongoose = require("mongoose");
+const PORT = process.env.PORT || 5000;
 
 const firbaseApp = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -21,6 +22,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
 app.use("/product", product);
 app.use("/user", user);
 app.use("/comment", comment);
@@ -34,6 +36,6 @@ mongoose.connect(
   }
 );
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("Start with port 5000");
 });
