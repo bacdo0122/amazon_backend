@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 var whitelist = [
   "http://localhost:3000",
+  "http://localhost:5000",
   "https://amazon-frontend1.vercel.app/",
 ];
 const firbaseApp = admin.initializeApp({
@@ -19,11 +20,8 @@ const firbaseApp = admin.initializeApp({
 });
 var corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
+    console.log(origin);
+    callback(null, true);
   },
 };
 
